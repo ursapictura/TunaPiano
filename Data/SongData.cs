@@ -13,7 +13,6 @@ namespace TunaPiano.Data
                 ArtistId = 2,
                 Album = "Jolene",
                 Length = 2.42M,
-                GenreId = 3,
             },
 
             new Song
@@ -23,7 +22,6 @@ namespace TunaPiano.Data
                 ArtistId = 1,
                 Album = "Cassadega",
                 Length = 4.16M,
-                GenreId = 18,
             },
 
             new Song
@@ -33,7 +31,6 @@ namespace TunaPiano.Data
                 ArtistId = 5,
                 Album = "The Idler Wheel...",
                 Length = 4.02M,
-                GenreId = 20,
             },
 
             new Song
@@ -43,7 +40,6 @@ namespace TunaPiano.Data
                 ArtistId = 5,
                 Album = "Blackstar",
                 Length = 6.22M,
-                GenreId = 6,
             },
 
             new Song
@@ -53,7 +49,6 @@ namespace TunaPiano.Data
                 ArtistId = 5,
                 Album = "The Rise and Fall of Ziggy Stardust...",
                 Length = 4.42M,
-                GenreId = 6,
             },
 
             new Song
@@ -63,7 +58,6 @@ namespace TunaPiano.Data
                 ArtistId = 1,
                 Album = "Salutations",
                 Length = 3.35M,
-                GenreId = 18,
             },
 
             new Song
@@ -73,7 +67,6 @@ namespace TunaPiano.Data
                 ArtistId = 2,
                 Album = "9 to 5 and Odd Jobs",
                 Length = 2.43M,
-                GenreId = 3,
             },
 
             new Song
@@ -83,7 +76,6 @@ namespace TunaPiano.Data
                 ArtistId = 1,
                 Album = "Awaken, My Love!",
                 Length = 4.41M,
-                GenreId = 19,
             },
         };
     }

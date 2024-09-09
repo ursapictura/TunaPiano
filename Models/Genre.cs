@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using TunaPiano.Models;
 
 namespace TunaPiano.Models
 {
@@ -6,5 +7,6 @@ namespace TunaPiano.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
+        List<Song> Songs { get; set; }
     }
 }

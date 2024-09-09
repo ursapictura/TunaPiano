@@ -11,7 +11,6 @@ namespace TunaPiano.Models
         public Artist Artist { get; set; }
         public string Album { get; set; }
         public decimal Length { get; set; }
-        public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+        public List<Genre> Genres { get; set; }
     }
 }

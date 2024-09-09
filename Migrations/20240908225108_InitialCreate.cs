@@ -25,19 +25,6 @@ namespace TunaPiano.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Description = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genres", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Songs",
                 columns: table => new
                 {
@@ -46,8 +33,7 @@ namespace TunaPiano.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     ArtistId = table.Column<int>(type: "integer", nullable: false),
                     Album = table.Column<string>(type: "text", nullable: false),
-                    Length = table.Column<decimal>(type: "numeric", nullable: false),
-                    GenreId = table.Column<int>(type: "integer", nullable: false)
+                    Length = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,12 +44,25 @@ namespace TunaPiano.Migrations
                         principalTable: "Artists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    SongId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Songs_Genres_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genres",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Genres_Songs_SongId",
+                        column: x => x.SongId,
+                        principalTable: "Songs",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -82,68 +81,68 @@ namespace TunaPiano.Migrations
 
             migrationBuilder.InsertData(
                 table: "Genres",
-                columns: new[] { "Id", "Description" },
+                columns: new[] { "Id", "Description", "SongId" },
                 values: new object[,]
                 {
-                    { 1, "Indie Rock" },
-                    { 2, "Pop Rock" },
-                    { 3, "Country" },
-                    { 4, "Rap" },
-                    { 5, "Inde Folk" },
-                    { 6, "Experimental Rock" },
-                    { 7, "Riot Girl" },
-                    { 8, "Metal" },
-                    { 9, "HipHop" },
-                    { 10, "Electronic" },
-                    { 11, "Ambient" },
-                    { 12, "Classical" },
-                    { 13, "Cinematic" },
-                    { 14, "Punk" },
-                    { 15, "Musicals" },
-                    { 16, "Math Rock" },
-                    { 17, "Bluegrass" },
-                    { 18, "Folk Rock" },
-                    { 19, "Psychedelic Rock" },
-                    { 20, "Art Pop" },
-                    { 21, "Rap" }
+                    { 1, "Indie Rock", null },
+                    { 2, "Pop Rock", null },
+                    { 3, "Country", null },
+                    { 4, "Rap", null },
+                    { 5, "Inde Folk", null },
+                    { 6, "Experimental Rock", null },
+                    { 7, "Riot Girl", null },
+                    { 8, "Metal", null },
+                    { 9, "HipHop", null },
+                    { 10, "Electronic", null },
+                    { 11, "Ambient", null },
+                    { 12, "Classical", null },
+                    { 13, "Cinematic", null },
+                    { 14, "Punk", null },
+                    { 15, "Musicals", null },
+                    { 16, "Math Rock", null },
+                    { 17, "Bluegrass", null },
+                    { 18, "Folk Rock", null },
+                    { 19, "Psychedelic Rock", null },
+                    { 20, "Art Pop", null },
+                    { 21, "Rap", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Songs",
-                columns: new[] { "Id", "Album", "ArtistId", "GenreId", "Length", "Title" },
+                columns: new[] { "Id", "Album", "ArtistId", "Length", "Title" },
                 values: new object[,]
                 {
-                    { 1, "Jolene", 2, 3, 2.42m, "Jolene" },
-                    { 2, "Cassadega", 1, 18, 4.16m, "Four Winds" },
-                    { 3, "The Idler Wheel...", 5, 20, 4.02m, "Hot Knife" },
-                    { 4, "Blackstar", 5, 6, 6.22m, "Lazarus" },
-                    { 5, "The Rise and Fall of Ziggy Stardust...", 5, 6, 4.42m, "Five Years" },
-                    { 6, "Salutations", 1, 18, 3.35m, "Afterthought" },
-                    { 7, "9 to 5 and Odd Jobs", 2, 3, 2.43m, "9 to 5" },
-                    { 8, "Awaken, My Love!", 1, 19, 4.41m, "Zombies" }
+                    { 1, "Jolene", 2, 2.42m, "Jolene" },
+                    { 2, "Cassadega", 1, 4.16m, "Four Winds" },
+                    { 3, "The Idler Wheel...", 5, 4.02m, "Hot Knife" },
+                    { 4, "Blackstar", 5, 6.22m, "Lazarus" },
+                    { 5, "The Rise and Fall of Ziggy Stardust...", 5, 4.42m, "Five Years" },
+                    { 6, "Salutations", 1, 3.35m, "Afterthought" },
+                    { 7, "9 to 5 and Odd Jobs", 2, 2.43m, "9 to 5" },
+                    { 8, "Awaken, My Love!", 1, 4.41m, "Zombies" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Genres_SongId",
+                table: "Genres",
+                column: "SongId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_ArtistId",
                 table: "Songs",
                 column: "ArtistId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Songs_GenreId",
-                table: "Songs",
-                column: "GenreId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Genres");
+
+            migrationBuilder.DropTable(
                 name: "Songs");
 
             migrationBuilder.DropTable(
                 name: "Artists");
-
-            migrationBuilder.DropTable(
-                name: "Genres");
         }
     }
 }

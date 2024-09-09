@@ -8,14 +8,14 @@ namespace TunaPiano.APIs
     {
         public static void Map(WebApplication app)
         {
-            //get all Artists
-            app.MapGet("api/artists", (TunaPianoDbContext db) =>
+            //Get all Artists
+            app.MapGet("/api/artists", (TunaPianoDbContext db) =>
             {
                 return db.Artists.ToList();
             });
 
             // Get Sinlge Artist by ID
-            app.MapGet("api/artists/{artistId}", (TunaPianoDbContext db, int artistId) =>
+            app.MapGet("/api/artists/{artistId}", (TunaPianoDbContext db, int artistId) =>
             {
                 Artist artist = db.Artists
                                 .Include(a => a.Songs)
@@ -29,7 +29,7 @@ namespace TunaPiano.APIs
             });
 
             // Create a new Artist
-            app.MapPost("api/artists", (TunaPianoDbContext db, Artist newArtist) =>
+            app.MapPost("/api/artists", (TunaPianoDbContext db, Artist newArtist) =>
             {
                 db.Artists.Add(newArtist);
                 db.SaveChanges();
@@ -37,7 +37,7 @@ namespace TunaPiano.APIs
             });
 
             // Delete an Artist
-            app.MapDelete("api/artists/{artistId}", (TunaPianoDbContext db, int artistId) =>
+            app.MapDelete("/api/artists/{artistId}", (TunaPianoDbContext db, int artistId) =>
             {
                 Artist artist = db.Artists
                                 .SingleOrDefault(a => a.Id == artistId);
@@ -52,7 +52,7 @@ namespace TunaPiano.APIs
             });
 
             // Update an Artist
-            app.MapPut("api/artists/{artistId}", (TunaPianoDbContext db, int artistId, Artist artist) =>
+            app.MapPut("/api/artists/{artistId}", (TunaPianoDbContext db, int artistId, Artist artist) =>
             {
                 Artist artistToUpdate = db.Artists.SingleOrDefault(a => a.Id == artistId);
 

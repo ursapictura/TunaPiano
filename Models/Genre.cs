@@ -7,6 +7,6 @@ namespace TunaPiano.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        List<Song> Songs { get; set; }
+        public List<Song> Songs { get; set; }
     }
 }
